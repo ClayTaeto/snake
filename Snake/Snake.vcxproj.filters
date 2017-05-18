@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="SnekBits.cpp" />
+    <ClCompile Include="Graphics.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Snek.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SnekBits.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="cleanup.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="headers">
+      <UniqueIdentifier>{3bf29197-849f-4953-95de-b2b14084e3bc}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
