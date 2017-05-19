@@ -6,6 +6,7 @@
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="SnekBits.cpp" />
     <ClCompile Include="Graphics.cpp" />
+    <ClCompile Include="Snek.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Snek.h">

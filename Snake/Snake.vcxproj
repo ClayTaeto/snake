@@ -127,6 +127,7 @@
     <ClCompile Include="Ball.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Graphics.cpp" />
+    <ClCompile Include="Snek.cpp" />
     <ClCompile Include="SnekBits.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>

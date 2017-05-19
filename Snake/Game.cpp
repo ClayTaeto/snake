@@ -1,7 +1,6 @@
 #include "Game.h"
 
-int Game::blueScore = 0;
-int Game::redScore = 0;
+int Game::score = 0;
 
 
 //TODO: Switch over to virtual functions & just call update();
@@ -14,7 +13,8 @@ void Game::handleState() {
 		case STATE_PLAYING:
 			//draw everything
 			//check score
-			if (blueScore > 9 || redScore > 9) {
+			//TODO: SNAKE WIN?!
+			if (score > 1000) {
 				//transition into game over state
 				state = STATE_GAMEOVER;
 			}
@@ -25,6 +25,5 @@ void Game::handleState() {
 }
 
 void Game::reset() {
-	blueScore = 0;
-	redScore = 0;
+	score = 0;
 }

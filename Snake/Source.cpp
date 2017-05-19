@@ -6,6 +6,7 @@
 #include "cleanup.h"
 #include "Sprite.h"
 #include "Graphics.h"
+#include "Snek.h"
 //#include "Ball.cpp"
 
 int main(int, char**) {
@@ -13,9 +14,7 @@ int main(int, char**) {
 
 	//TODO: ugh, I need a new constructor
 	MSprite background("img/background.png");
-	MSprite pipe("img/pipe.png");
-	pipe.x = 316;
-	pipe.y = 14;
+/*
 	MSprite pong("img/pong.png");
 	pong.x = 221;
 	pong.y = 77;
@@ -32,15 +31,12 @@ int main(int, char**) {
 	MSprite wins("img/wins.png");
 	wins.x = 232;
 	wins.y = 174;
-
-	ScoreCount redCounter(&Game::redScore);
+*/
+	Snek player;
+	ScoreCount redCounter(&Game::score);
 	redCounter.x = 259;
 	redCounter.y = 30;
-
-	ScoreCount blueCounter(&Game::blueScore);
-	blueCounter.x = 335;
-	blueCounter.y = 30;
-
+	/*
 	Ball ball("img/ballBlue.png");
 	ball.x = 321;
 	ball.y = 230;
@@ -56,11 +52,11 @@ int main(int, char**) {
 
 	ball.colliders.push_back(&paddleBlue);
 	ball.colliders.push_back(&paddleRed);
-	
+	*/
 	const Uint8 * keys = SDL_GetKeyboardState(NULL);
 	
 	SDL_Event e;
-	STATE state = STATE_MENU;
+	STATE state = STATE::STATE_MENU;
 	unsigned int timeWaited = 0, lastTime = 0;
 	bool quit = false;
 	while (!quit) {
@@ -89,42 +85,39 @@ int main(int, char**) {
 		case STATE_MENU:
 						
 			background.draw();
-			pong.draw();
-			start.draw();
+			player.move();
+			player.draw();
+			
 			//if keys, then start playing
 			if (keys[SDL_SCANCODE_UP] || keys[SDL_SCANCODE_DOWN] || keys[SDL_SCANCODE_RETURN]) {
-				state = STATE_PLAYING;
+				//state = STATE::STATE_PLAYING;
 			}
+			
 			break;
 		case STATE_PLAYING:
 			//draw everything			
 			background.draw();
-			pipe.draw();
 			redCounter.draw();
-			blueCounter.draw();
-			paddleBlue.draw();
-			paddleRed.draw();
-			ball.draw();
-
-			ball.move();
-			paddleRed.move();
+			
 			
 			if (keys[SDL_SCANCODE_UP]) {
-				paddleBlue.moveUp();
+				//paddleBlue.moveUp();
 			}
 
 			if (keys[SDL_SCANCODE_DOWN]) {
-				paddleBlue.moveDown();
+				//paddleBlue.moveDown();
 			}
 
 			//check score
-			if (Game::blueScore > 9 || Game::redScore > 9) {
+			/*
+			if (Game::score > 9 || Game::redScore > 9) {
 				//transition into game over state
 				state = STATE_GAMEOVER;
 				lastTime = SDL_GetTicks();
-			}
+			}*/
 			break;
 		case STATE_GAMEOVER:
+			/*
 			background.draw();
 			if (Game::blueScore > Game::redScore) {
 				blue.draw();
@@ -135,6 +128,8 @@ int main(int, char**) {
 			}
 			
 			start.draw();
+			*/
+
 			//if keys, then start playing
 			timeWaited += SDL_GetTicks() - lastTime;
 			lastTime = SDL_GetTicks();
@@ -155,8 +150,7 @@ int main(int, char**) {
 	}
 	//Clean up
 	background.clean();
-	paddleBlue.clean();
-	paddleRed.clean();
+
 	cleanup(Graphics::renderer, Graphics::window);
 	IMG_Quit();
 	SDL_Quit();

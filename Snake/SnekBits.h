@@ -11,7 +11,7 @@ using namespace std;
 class SnekBits
 {
 public:
-	void move();
+	void move(int t_x, int t_y);
 	void draw();
 	void clean();
 	int index;
@@ -19,6 +19,7 @@ public:
 	SnekBits(const char * t_path);
 	SnekBits(const char *t_path, int t_x, int t_y);
 	int x, y;
+	
 private:
 	std::string m_path;
 	SDL_Texture* m_texture;

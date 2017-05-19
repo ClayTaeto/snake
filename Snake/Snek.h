@@ -2,23 +2,27 @@
 #define _SNEK_H_
 
 #include <iostream>
+#include <vector>
+#include "SnekBits.h"
+
 using namespace std;
 
-enum STATE
-{
-	STATE_MENU,
-	STATE_PLAYING,
-	STATE_GAMEOVER
-};
 
-class Game
+class Snek
 {
 public:
-	STATE state;
+	//SnekBits* bits[193];
+
+	const Uint8 * keys;
+	vector<SnekBits*> bits;
 	void handleState();
+	void move();
+	void draw();
+	int length, vx = 1, vy = 0;
 	void static reset();
-	static int blueScore;
-	static int redScore;
+	Snek();	
+	~Snek();
+
 };
 
 #endif

@@ -65,11 +65,13 @@ public:
 
 		if (x < 0 || x > 640 - texture_size.w) {
 			//vx *= -1;
+			/* TODO: remove
 			if (x < 0) {
 				Game::blueScore += 1;
 			} else {
 				Game::redScore += 1;
 			}
+			*/
 			
 			//TODO: get rid of magic numbers... static graphics class? 
 			x = 640 / 2 + texture_size.w / 2;
@@ -89,8 +91,6 @@ public:
 			
 			hitCounter = 0;
 			std::cout << "Goooooooooaaaaallll\n";
-			std::cout << "Blue: " << Game::blueScore << "\n";
-			std::cout << "Red: " << Game::redScore << "\n";
 		}
 
 		//bounce off top
@@ -99,7 +99,7 @@ public:
 		}
 		
 		//std::cout << colliders[0]->y << "\n";
-		for (int i = 0; i < colliders.size(); i++) {
+		for (unsigned int i = 0; i < colliders.size(); i++) {
 
 			//Right Edge
 			if (colliders[i]->x < x && colliders[i]->x + colliders[i]->texture_size.w > x) {

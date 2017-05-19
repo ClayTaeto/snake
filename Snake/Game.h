@@ -25,8 +25,7 @@ public:
 	STATE state;	
 	void handleState();
 	void static reset();
-	static int blueScore;
-	static int redScore;
+	static int score;
 };
 
 #endif
