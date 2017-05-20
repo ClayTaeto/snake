@@ -5,9 +5,6 @@ void Snek::handleState()
 {
 }
 
-void Snek::reset()
-{
-}
 Snek::Snek()
 {
 	bits.push_back(new SnekBits("img/snake.png", 4, 0));
@@ -65,6 +62,14 @@ void Snek::move() {
 	bits[0]->move(bits[0]->x + vx, bits[0]->y + vy);
 }
 void Snek::draw() {
+	for (int i = bits.size() - 1; i > -1; i--) {
+		bits[i]->draw();
+	}
+}
+void Snek::grow() {
+	bits.push_back(new SnekBits("img/snake-bod.png", -1, -1));
+}
+void Snek::reset() {
 	for (int i = bits.size() - 1; i > -1; i--) {
 		bits[i]->draw();
 	}

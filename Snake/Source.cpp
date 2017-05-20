@@ -7,7 +7,7 @@
 #include "Sprite.h"
 #include "Graphics.h"
 #include "Snek.h"
-//#include "Ball.cpp"
+#include "Food.h"
 
 int main(int, char**) {
 	Graphics::setup();
@@ -18,6 +18,8 @@ int main(int, char**) {
 	ScoreCount redCounter(&Game::score);
 	redCounter.x = 259;
 	redCounter.y = 30;
+	Food foodbits("img/rabbit.png");
+	foodbits.move();
 
 	const Uint8 * keys = SDL_GetKeyboardState(NULL);
 	
@@ -60,9 +62,16 @@ int main(int, char**) {
 			
 			break;
 		case STATE_PLAYING:
-			//draw everything			
-			background.draw();
+						
+			if (foodbits.x == player.bits[0]->x && foodbits.y == player.bits[0]->y) {
+				player.grow();
+				foodbits.move();
+			}
 			player.move();
+
+			//draw everything
+			background.draw();
+			foodbits.draw();
 			player.draw();
 			//redCounter.draw();
 			

@@ -18,8 +18,9 @@ public:
 	void handleState();
 	void move();
 	void draw();
+	void grow();
 	int length, vx = 1, vy = 0;
-	void static reset();
+	void reset();
 	Snek();	
 	~Snek();
 
