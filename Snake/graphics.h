@@ -17,6 +17,7 @@ public:
 	static int setup();
 	static void renderTexture(SDL_Texture *tex, int x, int y, SDL_Rect *clip = nullptr);
 	static void renderTexture(SDL_Texture *tex, SDL_Rect dst, SDL_Rect *clip = nullptr);
+	static void renderTexture(SDL_Texture * tex, int x, int y, double angle, SDL_Point * center);
 	static SDL_Texture *loadTexture(const std::string &file);
 	static void logSDLError(const std::string &msg);
 	static unsigned int lastTime, timeWaited;

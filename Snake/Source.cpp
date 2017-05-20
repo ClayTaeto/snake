@@ -12,47 +12,13 @@
 int main(int, char**) {
 	Graphics::setup();
 
-	//TODO: ugh, I need a new constructor
 	MSprite background("img/background.png");
-/*
-	MSprite pong("img/pong.png");
-	pong.x = 221;
-	pong.y = 77;
 
-	MSprite start("img/start.png");
-	start.x = 187;
-	start.y = 349;
-	MSprite red("img/red.png");
-	red.x = 264;
-	red.y = 108;
-	MSprite blue("img/blue.png");
-	blue.x = 255;
-	blue.y = 108;
-	MSprite wins("img/wins.png");
-	wins.x = 232;
-	wins.y = 174;
-*/
 	Snek player;
 	ScoreCount redCounter(&Game::score);
 	redCounter.x = 259;
 	redCounter.y = 30;
-	/*
-	Ball ball("img/ballBlue.png");
-	ball.x = 321;
-	ball.y = 230;
 
-	CpuPaddle paddleRed("img/paddleRed.png");
-	paddleRed.x = 18;
-	paddleRed.y = 201;
-	paddleRed.setTarget(&ball);
-
-	MyPaddle paddleBlue("img/paddleBlu.png");
-	paddleBlue.x = 604;
-	paddleBlue.y = 201;
-
-	ball.colliders.push_back(&paddleBlue);
-	ball.colliders.push_back(&paddleRed);
-	*/
 	const Uint8 * keys = SDL_GetKeyboardState(NULL);
 	
 	SDL_Event e;
@@ -85,19 +51,20 @@ int main(int, char**) {
 		case STATE_MENU:
 						
 			background.draw();
-			player.move();
-			player.draw();
+			
 			
 			//if keys, then start playing
-			if (keys[SDL_SCANCODE_UP] || keys[SDL_SCANCODE_DOWN] || keys[SDL_SCANCODE_RETURN]) {
-				//state = STATE::STATE_PLAYING;
+			if (keys[SDL_SCANCODE_RETURN]) {
+				state = STATE::STATE_PLAYING;
 			}
 			
 			break;
 		case STATE_PLAYING:
 			//draw everything			
 			background.draw();
-			redCounter.draw();
+			player.move();
+			player.draw();
+			//redCounter.draw();
 			
 			
 			if (keys[SDL_SCANCODE_UP]) {

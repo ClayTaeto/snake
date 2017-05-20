@@ -56,6 +56,16 @@ void Graphics::renderTexture(SDL_Texture *tex, SDL_Rect dst, SDL_Rect *clip) {
 	SDL_RenderCopy(Graphics::renderer, tex, clip, &dst);
 }
 
+void Graphics::renderTexture(SDL_Texture *tex, int x, int y, double angle, SDL_Point* center) {
+	SDL_Rect dst;
+	dst.x = x;
+	dst.y = y;
+	SDL_QueryTexture(tex, NULL, NULL, &dst.w, &dst.h);
+	SDL_RenderCopyEx(Graphics::renderer, tex, nullptr, &dst, angle, center, SDL_FLIP_NONE);
+}
+
+
+
 SDL_Texture * Graphics::loadTexture(const std::string & file)
 {
 	SDL_Texture *texture = IMG_LoadTexture(Graphics::renderer, file.c_str());
