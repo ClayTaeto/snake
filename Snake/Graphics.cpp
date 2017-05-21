@@ -44,12 +44,10 @@ void Graphics::renderTexture(SDL_Texture *tex, int x, int y, SDL_Rect *clip) {
 		dst.w = clip->w;
 		dst.h = clip->h;
 	}
-	else {
-		//TODO: move this into constructor of class calling this.
+	else {		
 		SDL_QueryTexture(tex, NULL, NULL, &dst.w, &dst.h);
 	}
 	renderTexture(tex, dst, clip);
-	//renderTexture( //Graphics::renderer, tex, dst, clip);
 }
 
 void Graphics::renderTexture(SDL_Texture *tex, SDL_Rect dst, SDL_Rect *clip) {
@@ -69,8 +67,8 @@ void Graphics::renderTexture(SDL_Texture *tex, int x, int y, double angle, SDL_P
 SDL_Texture * Graphics::loadTexture(const std::string & file)
 {
 	SDL_Texture *texture = IMG_LoadTexture(Graphics::renderer, file.c_str());
-	if (texture == nullptr) {
-		logSDLError("LoadTexture");
+	if (texture == nullptr || texture == NULL) {
+		logSDLError("LoadTexture " + file);
 		cleanup(texture, Graphics::renderer);
 		IMG_Quit();
 		SDL_Quit();

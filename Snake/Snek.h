@@ -11,16 +11,18 @@ using namespace std;
 class Snek
 {
 public:
-	//SnekBits* bits[193];
-
 	const Uint8 * keys;
 	vector<SnekBits*> bits;
 	void handleState();
 	void move();
 	void draw();
 	void grow();
-	int length, vx = 1, vy = 0;
+	int length, vx = 1, vy = 0, extraDelay = 0;
 	void reset();
+	void resetHard();
+	bool isValidDirection(int x, int y);
+	bool isDead();	
+	bool checkBounds();
 	Snek();	
 	~Snek();
 

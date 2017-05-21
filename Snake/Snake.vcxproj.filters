@@ -2,7 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Ball.cpp" />
-    <ClCompile Include="Game.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="SnekBits.cpp" />
     <ClCompile Include="Graphics.cpp" />
@@ -14,9 +13,6 @@
       <Filter>headers</Filter>
     </ClInclude>
     <ClInclude Include="SnekBits.h">
-      <Filter>headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.h">
       <Filter>headers</Filter>
     </ClInclude>
     <ClInclude Include="cleanup.h">

@@ -22,10 +22,10 @@ public:
 	int x, y;
 	double angle;
 	SDL_Point center;
-	
+	SDL_Texture* texture;
+
 private:
 	std::string m_path;
-	SDL_Texture* m_texture;
 	
 };
 

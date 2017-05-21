@@ -8,24 +8,28 @@
 #include "Graphics.h"
 #include "Snek.h"
 #include "Food.h"
+enum STATE
+{
+	STATE_MENU,
+	STATE_PLAYING,
+	STATE_GAMEOVER
+};
 
 int main(int, char**) {
 	Graphics::setup();
 
 	MSprite background("img/background.png");
-
+	MSprite title("img/SnakeTitle.png", 139, 0);
+	MSprite subTitle("img/Push Enter to Start.png", 168, 379);
 	Snek player;
-	ScoreCount redCounter(&Game::score);
-	redCounter.x = 259;
-	redCounter.y = 30;
-	Food foodbits("img/rabbit.png");
-	foodbits.move();
+	Food foodBits("img/rabbit.png");
+	foodBits.move(&player);
 
 	const Uint8 * keys = SDL_GetKeyboardState(NULL);
 	
 	SDL_Event e;
 	STATE state = STATE::STATE_MENU;
-	unsigned int timeWaited = 0, lastTime = 0;
+
 	bool quit = false;
 	while (!quit) {
 		//Event Polling?
@@ -44,8 +48,6 @@ int main(int, char**) {
 			}
 		}
 
-		
-
 		//Rendering
 		SDL_RenderClear(Graphics::renderer);
 		
@@ -53,7 +55,8 @@ int main(int, char**) {
 		case STATE_MENU:
 						
 			background.draw();
-			
+			title.draw();
+			subTitle.draw();
 			
 			//if keys, then start playing
 			if (keys[SDL_SCANCODE_RETURN]) {
@@ -62,64 +65,36 @@ int main(int, char**) {
 			
 			break;
 		case STATE_PLAYING:
-						
-			if (foodbits.x == player.bits[0]->x && foodbits.y == player.bits[0]->y) {
+							
+			//if snek eats, then gro
+			if (foodBits.x == player.bits[0]->x && foodBits.y == player.bits[0]->y) {
 				player.grow();
-				foodbits.move();
+				foodBits.move(&player);
+			}
+			//if snek eats everything, then it wins
+			if (player.bits.size() == 16*12){
+				//you won
+				state = STATE::STATE_GAMEOVER;
+				break;				
 			}
 			player.move();
 
 			//draw everything
 			background.draw();
-			foodbits.draw();
+			foodBits.draw();
 			player.draw();
-			//redCounter.draw();
-			
-			
-			if (keys[SDL_SCANCODE_UP]) {
-				//paddleBlue.moveUp();
-			}
 
-			if (keys[SDL_SCANCODE_DOWN]) {
-				//paddleBlue.moveDown();
-			}
-
-			//check score
-			/*
-			if (Game::score > 9 || Game::redScore > 9) {
-				//transition into game over state
-				state = STATE_GAMEOVER;
-				lastTime = SDL_GetTicks();
-			}*/
 			break;
 		case STATE_GAMEOVER:
-			/*
 			background.draw();
-			if (Game::blueScore > Game::redScore) {
-				blue.draw();
-				wins.draw();
-			} else {
-				red.draw();
-				wins.draw();
-			}
-			
-			start.draw();
-			*/
+			player.draw();
 
-			//if keys, then start playing
-			timeWaited += SDL_GetTicks() - lastTime;
-			lastTime = SDL_GetTicks();
-			if (timeWaited < 1000) {
-				break;
-			}
-			if (keys[SDL_SCANCODE_UP] || keys[SDL_SCANCODE_DOWN] || keys[SDL_SCANCODE_RETURN]) {
+			if (keys[SDL_SCANCODE_RETURN]) {
 				state = STATE_PLAYING;
-				Game::reset();
-				timeWaited = 0;
+				player.resetHard();
 			}
 			break;
 		}
-		
 		
 		//Update the screen
 		SDL_RenderPresent(Graphics::renderer);
