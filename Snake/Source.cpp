@@ -65,18 +65,19 @@ int main(int, char**) {
 			
 			break;
 		case STATE_PLAYING:
-							
+			//if snek eats everything, then it wins
+			if (player.bits.size() == 16 * 12) {
+				//you won
+				state = STATE::STATE_GAMEOVER;
+				break;
+			}
+
 			//if snek eats, then gro
 			if (foodBits.x == player.bits[0]->x && foodBits.y == player.bits[0]->y) {
 				player.grow();
 				foodBits.move(&player);
 			}
-			//if snek eats everything, then it wins
-			if (player.bits.size() == 16*12){
-				//you won
-				state = STATE::STATE_GAMEOVER;
-				break;				
-			}
+			
 			player.move();
 
 			//draw everything
