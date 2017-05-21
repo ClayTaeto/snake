@@ -100,6 +100,11 @@ void Snek::reset() {
 	}
 
 	bits.erase(bits.begin() + 5, bits.end());
+	
+	if (bits[0]->x == bits[4]->x && bits[0]->y == bits[4]->y) {
+		bits[4]->x = bits[3]->x;
+		bits[4]->y = bits[3]->y;
+	}
 }
 
 void Snek::resetHard() {
