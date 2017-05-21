@@ -4,6 +4,7 @@ SDL_Renderer* Graphics::renderer = nullptr;
 SDL_Window* Graphics::window = nullptr;
 unsigned int Graphics::lastTime = 0;
 unsigned int Graphics::timeWaited = 0;
+int Graphics::FRAMES_PER_SECOND = 60;
 
 int Graphics::setup() {
 	//Start up SDL and make sure it went ok

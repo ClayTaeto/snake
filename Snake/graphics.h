@@ -21,5 +21,6 @@ public:
 	static SDL_Texture *loadTexture(const std::string &file);
 	static void logSDLError(const std::string &msg);
 	static unsigned int lastTime, timeWaited;
+	static int FRAMES_PER_SECOND;
 };
 #endif

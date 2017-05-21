@@ -84,7 +84,7 @@ int main(int, char**) {
 			background.draw();
 			foodBits.draw();
 			player.draw();
-
+			SDL_Delay(1000/Graphics::FRAMES_PER_SECOND);
 			break;
 		case STATE_GAMEOVER:
 			background.draw();

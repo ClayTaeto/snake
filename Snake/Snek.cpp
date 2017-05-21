@@ -66,6 +66,7 @@ void Snek::move() {
 	if (Graphics::timeWaited < 150 + extraDelay) {
 		return;
 	}
+
 	if (checkBounds()) {
 		resetHard();
 		return;
